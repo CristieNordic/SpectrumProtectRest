@@ -5,6 +5,8 @@ __pycache__/
 
 # C extensions
 *.so
+pip-selfcheck.json
+.gitignore
 
 # Distribution / packaging
 .Python
@@ -15,8 +17,10 @@ dist/
 downloads/
 eggs/
 .eggs/
+include/
 lib/
-lib64/
+bin/
+lib64
 parts/
 sdist/
 var/
