@@ -12,23 +12,24 @@ instance = 'SERVER1'
 username = 'username'
 password = 'myPassword'
 
-ocInstanceUrl = sp.OcOperation(protocol,tcpaddress,tcpport,instance)
-
 # Print Test Command that is Query Status
 command = 'query status'
 try:
-    response = ocInstanceUrl.testConnection(ocInstanceUrl, username, password, command)
-    response = formatJson(testCommand)
+    testCmd = ocInstanceUrl.testConnection(ocInstanceUrl, username, password, command)
+    response = formatJson(testCmd)
     print(response)
 
-expect OSError as ocerror:
+
+except OSError:
     print('Ooops, something went wrong... Error: ' + ocerror)
-    break
 
-# Running my own command
-print ("\nLet's run your own command now\n")
-myCommand = 'query node *'
-myCmd = ocInstanceUrl.runCmd(ocInstanceUrl, username, password,  myCommand)
-response = formatJson(myCmd)
-print (response)
+try:
+    # Running my own command
+    print ("\nLet's run your own command now\n")
+    myCommand = 'query node *'
+    myCmd = ocInstanceUrl.runCmd(ocInstanceUrl, username, password,  myCommand)
+    response = formatJson(myCmd)
+    print (response)
 
+except OSError:
+    print('Ooops, something went wrong... Error: ' + ocerror)
